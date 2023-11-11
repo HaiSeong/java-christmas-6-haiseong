@@ -9,7 +9,7 @@ public class ChristmasDiscountPolicy implements DiscountPolicy {
     private static final int DISCOUNT_INCREMENT_PER_DAY = 100;
     public static final int START_DAY = 1;
 
-    private Date date;
+    private final Date date;
 
     public ChristmasDiscountPolicy(Date date) {
         this.date = date;
