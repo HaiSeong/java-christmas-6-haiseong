@@ -30,7 +30,7 @@ class WeekendDiscountPolicyTest {
 
         DiscountEntry discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(2023 * 3);
+        assertThat(discount.getValue()).isEqualTo(2023);
     }
 
     @Test
