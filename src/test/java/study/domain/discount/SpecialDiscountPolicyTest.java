@@ -7,7 +7,6 @@ import christmas.domain.Order;
 import christmas.domain.discount.DiscountEntry;
 import christmas.domain.discount.DiscountPolicy;
 import christmas.domain.discount.SpecialDiscountPolicy;
-import christmas.domain.discount.WeekendDiscountPolicy;
 import christmas.enums.MenuItem;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,6 +40,17 @@ class SpecialDiscountPolicyTest {
         DiscountPolicy policy = new SpecialDiscountPolicy(ordinalDay);
 
         DiscountEntry discount = policy.applyDiscount(order);
+
+        assertThat(discount.getValue()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("스페셜 데이지만 최소금액을 넘지 못하면 할인 적용되는지 않아야함")
+    void applyDiscount_최소_금액_미만() {
+        Date specialDay = new Date(25);
+        DiscountPolicy policy = new SpecialDiscountPolicy(specialDay);
+
+        DiscountEntry discount = policy.applyDiscount(new Order(Map.of(MenuItem.MUSHROOM_SOUP, 1)));
 
         assertThat(discount.getValue()).isEqualTo(0);
     }

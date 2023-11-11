@@ -43,4 +43,15 @@ class WeekdayDiscountPolicyTest {
 
         assertThat(discount.getValue()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("평일이지만 최소금액을 넘지 못하면 할인 적용되는지 않아야함")
+    void applyDiscount_최소_금액_미만() {
+        Date weekday = new Date(3);
+        DiscountPolicy policy = new WeekdayDiscountPolicy(weekday);
+
+        DiscountEntry discount = policy.applyDiscount(new Order(Map.of(MenuItem.ICE_CREAM, 1)));
+
+        assertThat(discount.getValue()).isEqualTo(0);
+    }
 }

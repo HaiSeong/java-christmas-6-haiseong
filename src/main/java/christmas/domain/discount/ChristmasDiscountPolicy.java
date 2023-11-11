@@ -17,7 +17,7 @@ public class ChristmasDiscountPolicy implements DiscountPolicy {
 
     @Override
     public DiscountEntry applyDiscount(Order order) {
-        if (date.isBeforeChristmas()) {
+        if (date.isBeforeChristmas() && isAboveMinimumAmount(order)) {
             int discountAmount = DISCOUNT_START_AMOUNT + (date.getDay() - START_DAY) * DISCOUNT_INCREMENT_PER_DAY;
             return new DiscountEntry(POLICY_NAME, discountAmount);
         }

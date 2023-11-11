@@ -43,4 +43,15 @@ class ChristmasDiscountPolicyTest {
 
         assertThat(discount.getValue()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("크리스마스 이전이지만 최소금액을 넘지 못하면 할인 적용되는지 않아야함")
+    void applyDiscount_최소_금액_미만() {
+        Date dateBeforeChristmas = new Date(25);
+        DiscountPolicy policy = new ChristmasDiscountPolicy(dateBeforeChristmas);
+
+        DiscountEntry discount = policy.applyDiscount(new Order(Map.of(MenuItem.MUSHROOM_SOUP, 1)));
+
+        assertThat(discount.getValue()).isEqualTo(0);
+    }
 }
