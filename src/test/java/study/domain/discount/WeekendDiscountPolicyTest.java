@@ -36,8 +36,8 @@ class WeekendDiscountPolicyTest {
     @Test
     @DisplayName("평일에 할인이 적용되지 않는지 테스트")
     void applyDiscountAfterChristmas() {
-        Date dateAfterChristmas = new Date(3);
-        DiscountPolicy policy = new WeekendDiscountPolicy(dateAfterChristmas);
+        Date weekday = new Date(3);
+        DiscountPolicy policy = new WeekendDiscountPolicy(weekday);
 
         DiscountEntry discount = policy.applyDiscount(order);
 
