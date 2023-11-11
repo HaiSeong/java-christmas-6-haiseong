@@ -50,4 +50,11 @@ public class Order {
             throw new IllegalArgumentException(ONLY_DRINKS_ERROR_MESSAGE);
         }
     }
+
+    public int countItemsByCategory(Category category) {
+        return orderItems.entrySet().stream()
+                .filter(entry -> entry.getKey().getCategory() == category)
+                .mapToInt(Map.Entry::getValue)
+                .sum();
+    }
 }

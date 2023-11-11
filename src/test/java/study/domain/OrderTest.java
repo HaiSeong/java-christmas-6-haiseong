@@ -3,13 +3,18 @@ package study.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import christmas.enums.Category;
 import christmas.enums.MenuItem;
 import christmas.domain.Order;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class OrderTest {
 
@@ -53,5 +58,31 @@ public class OrderTest {
 
         assertThatThrownBy(() -> new Order(items)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("한 번에 최대 20개까지만 주문할 수 있습니다.");
+    }
+
+    static Stream<Arguments> categoryItemCountProvider() {
+        return Stream.of(
+                Arguments.of(Category.APPETIZER, 0),
+                Arguments.of(Category.MAIN, 2),
+                Arguments.of(Category.DESSERT, 1),
+                Arguments.of(Category.DRINK, 2)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("categoryItemCountProvider")
+    @DisplayName("각 카테고리 별 주문항목 수를 확인")
+    void countItemsByCategory(Category category, int expectedCount) {
+        items.put(MenuItem.T_BONE_STEAK, 1);
+        items.put(MenuItem.BBQ_RIBS, 1);
+        items.put(MenuItem.CHOCOLATE_CAKE, 1);
+        items.put(MenuItem.ZERO_COLA, 2);
+
+        Order order = new Order(items);
+
+        assertThat(order.countItemsByCategory(Category.APPETIZER)).isEqualTo(0);
+        assertThat(order.countItemsByCategory(Category.MAIN)).isEqualTo(2);
+        assertThat(order.countItemsByCategory(Category.DESSERT)).isEqualTo(1);
+        assertThat(order.countItemsByCategory(category)).isEqualTo(expectedCount);
     }
 }
