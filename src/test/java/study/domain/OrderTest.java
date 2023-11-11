@@ -80,9 +80,18 @@ public class OrderTest {
 
         Order order = new Order(items);
 
-        assertThat(order.countItemsByCategory(Category.APPETIZER)).isEqualTo(0);
-        assertThat(order.countItemsByCategory(Category.MAIN)).isEqualTo(2);
-        assertThat(order.countItemsByCategory(Category.DESSERT)).isEqualTo(1);
         assertThat(order.countItemsByCategory(category)).isEqualTo(expectedCount);
+    }
+
+    @Test
+    @DisplayName("모든 주문항목 가격 총합 확인")
+    void getTotalPrice() {
+        items.put(MenuItem.TAPAS, 1);
+        items.put(MenuItem.SEAFOOD_PASTA, 1);
+        items.put(MenuItem.CHRISTMAS_PASTA, 1);
+
+        Order order = new Order(items);
+
+        assertThat(order.getTotalPrice()).isEqualTo(65_500 );
     }
 }

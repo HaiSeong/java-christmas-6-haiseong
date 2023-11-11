@@ -52,9 +52,21 @@ public class Order {
     }
 
     public int countItemsByCategory(Category category) {
-        return orderItems.entrySet().stream()
+        return orderItems.entrySet()
+                .stream()
                 .filter(entry -> entry.getKey().getCategory() == category)
                 .mapToInt(Map.Entry::getValue)
                 .sum();
+    }
+
+    public int getTotalPrice() {
+        return orderItems.entrySet()
+                .stream()
+                .mapToInt(entry -> calculateTotalItemPrice(entry.getKey(), entry.getValue()))
+                .sum();
+    }
+
+    private int calculateTotalItemPrice(MenuItem item, int quantity) {
+        return item.getPrice() * quantity;
     }
 }
