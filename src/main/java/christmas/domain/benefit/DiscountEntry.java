@@ -1,4 +1,4 @@
-package christmas.domain.discount;
+package christmas.domain.benefit;
 
 import java.util.Map.Entry;
 

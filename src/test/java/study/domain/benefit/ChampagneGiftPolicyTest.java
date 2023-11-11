@@ -1,11 +1,11 @@
-package study.domain.discount;
+package study.domain.benefit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import christmas.domain.Order;
-import christmas.domain.discount.ChampagneGiftPolicy;
-import christmas.domain.discount.GiftEntry;
-import christmas.domain.discount.GiftPolicy;
+import christmas.domain.benefit.ChampagneGiftPolicy;
+import christmas.domain.benefit.GiftEntry;
+import christmas.domain.benefit.GiftPolicy;
 import christmas.enums.MenuItem;
 import java.util.HashMap;
 import java.util.Map;

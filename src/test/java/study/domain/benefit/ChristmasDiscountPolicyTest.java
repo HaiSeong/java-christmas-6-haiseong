@@ -1,10 +1,10 @@
-package study.domain.discount;
+package study.domain.benefit;
 
 import christmas.domain.Date;
 import christmas.domain.Order;
-import christmas.domain.discount.ChristmasDiscountPolicy;
-import christmas.domain.discount.DiscountEntry;
-import christmas.domain.discount.DiscountPolicy;
+import christmas.domain.benefit.ChristmasDiscountPolicy;
+import christmas.domain.benefit.DiscountEntry;
+import christmas.domain.benefit.DiscountPolicy;
 import christmas.enums.MenuItem;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
