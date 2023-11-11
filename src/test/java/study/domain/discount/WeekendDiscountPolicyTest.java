@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.domain.discount.DiscountEntry;
+import christmas.domain.discount.DiscountPolicy;
 import christmas.domain.discount.WeekendDiscountPolicy;
 import christmas.enums.MenuItem;
 import java.util.Map;
@@ -25,7 +26,7 @@ class WeekendDiscountPolicyTest {
     @DisplayName("주말에 할인이 올바르게 적용되는지 테스트")
     void applyDiscountBeforeChristmas() {
         Date weekend = new Date(2);
-        WeekendDiscountPolicy policy = new WeekendDiscountPolicy(weekend);
+        DiscountPolicy policy = new WeekendDiscountPolicy(weekend);
 
         DiscountEntry discount = policy.applyDiscount(order);
 
@@ -36,7 +37,7 @@ class WeekendDiscountPolicyTest {
     @DisplayName("평일에 할인이 적용되지 않는지 테스트")
     void applyDiscountAfterChristmas() {
         Date dateAfterChristmas = new Date(3);
-        WeekendDiscountPolicy policy = new WeekendDiscountPolicy(dateAfterChristmas);
+        DiscountPolicy policy = new WeekendDiscountPolicy(dateAfterChristmas);
 
         DiscountEntry discount = policy.applyDiscount(order);
 
