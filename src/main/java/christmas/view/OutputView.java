@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s\n";
-    private static final String PREVIEW_EVENT_BENEFITS_MESSAGE = "12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+    private static final String PREVIEW_EVENT_BENEFITS_MESSAGE_FORMAT = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
     private static final String ORDERED_MENU_ITEMS_MESSAGE_FORMAT = "<주문 메뉴>\n%s\n";
     private static final String TOTAL_AMOUNT_BEFORE_DISCOUNT_MESSAGE_FORMAT = "<할인 전 총주문 금액>\n%,d원\n";
     private static final String GIFTED_ITEMS_MESSAGE_FORMAT = "<증정 메뉴>\n%s\n";
@@ -25,8 +25,8 @@ public class OutputView {
         System.out.printf(ERROR_MESSAGE_FORMAT, message);
     }
 
-    public void printPreviewEventBenefitsMessage() {
-        System.out.println(PREVIEW_EVENT_BENEFITS_MESSAGE);
+    public void printPreviewEventBenefitsMessage(int day) {
+        System.out.printf(PREVIEW_EVENT_BENEFITS_MESSAGE_FORMAT, day);
         printBlank();
     }
 

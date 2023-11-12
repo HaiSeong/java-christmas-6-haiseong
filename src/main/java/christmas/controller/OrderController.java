@@ -24,7 +24,7 @@ public class OrderController {
         BenefitService benefitService = BenefitService.createBenefitService(date);
         EventBadge eventBadge = benefitService.getEventBadge(order);
 
-        outputView.printPreviewEventBenefitsMessage();
+        outputView.printPreviewEventBenefitsMessage(date.getDay());
         outputView.printOrderedMenuItems(order.toString());
         outputView.printTotalAmountBeforeDiscount(order.getTotalPrice());
 
