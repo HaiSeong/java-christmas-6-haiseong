@@ -30,7 +30,7 @@ class WeekendDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.discountAmount()).isEqualTo(2023);
+        assertThat(discount.amount()).isEqualTo(2023);
     }
 
     @Test
@@ -41,6 +41,6 @@ class WeekendDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.discountAmount()).isEqualTo(0);
+        assertThat(discount.amount()).isEqualTo(0);
     }
 }

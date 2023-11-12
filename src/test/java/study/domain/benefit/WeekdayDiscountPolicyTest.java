@@ -30,7 +30,7 @@ class WeekdayDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.discountAmount()).isEqualTo(2023 * 3);
+        assertThat(discount.amount()).isEqualTo(2023 * 3);
     }
 
     @Test
@@ -41,7 +41,7 @@ class WeekdayDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.discountAmount()).isEqualTo(0);
+        assertThat(discount.amount()).isEqualTo(0);
     }
 
     @Test
@@ -52,6 +52,6 @@ class WeekdayDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(new Order(Map.of(MenuItem.ICE_CREAM, 1)));
 
-        assertThat(discount.discountAmount()).isEqualTo(0);
+        assertThat(discount.amount()).isEqualTo(0);
     }
 }

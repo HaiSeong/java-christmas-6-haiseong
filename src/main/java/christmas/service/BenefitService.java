@@ -33,7 +33,7 @@ public class BenefitService {
         Map<String, Integer> benefits = new HashMap<>();
 
         List<Discount> discounts = discountApplier.applyDiscounts(order);
-        discounts.forEach(discount -> benefits.put(discount.policyName(), discount.discountAmount()));
+        discounts.forEach(discount -> benefits.put(discount.policyName(), discount.amount()));
 
         List<Gift> gifts = getGifts(order);
         gifts.forEach(gift -> benefits.put(gift.policyName(), gift.calculateTotalPrice()));

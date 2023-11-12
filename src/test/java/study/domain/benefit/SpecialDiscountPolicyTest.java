@@ -30,7 +30,7 @@ class SpecialDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.discountAmount()).isEqualTo(1000);
+        assertThat(discount.amount()).isEqualTo(1000);
     }
 
     @Test
@@ -41,7 +41,7 @@ class SpecialDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.discountAmount()).isEqualTo(0);
+        assertThat(discount.amount()).isEqualTo(0);
     }
 
     @Test
@@ -52,6 +52,6 @@ class SpecialDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(new Order(Map.of(MenuItem.MUSHROOM_SOUP, 1)));
 
-        assertThat(discount.discountAmount()).isEqualTo(0);
+        assertThat(discount.amount()).isEqualTo(0);
     }
 }

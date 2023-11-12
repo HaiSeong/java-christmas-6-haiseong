@@ -30,7 +30,7 @@ class ChristmasDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.discountAmount()).isEqualTo(3400);
+        assertThat(discount.amount()).isEqualTo(3400);
     }
 
     @Test
@@ -41,7 +41,7 @@ class ChristmasDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.discountAmount()).isEqualTo(0);
+        assertThat(discount.amount()).isEqualTo(0);
     }
 
     @Test
@@ -52,6 +52,6 @@ class ChristmasDiscountPolicyTest {
 
         Discount discount = policy.applyDiscount(new Order(Map.of(MenuItem.MUSHROOM_SOUP, 1)));
 
-        assertThat(discount.discountAmount()).isEqualTo(0);
+        assertThat(discount.amount()).isEqualTo(0);
     }
 }

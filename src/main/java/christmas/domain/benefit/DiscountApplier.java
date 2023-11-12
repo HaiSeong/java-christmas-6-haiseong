@@ -25,7 +25,7 @@ public class DiscountApplier {
     public List<Discount> applyDiscounts(Order order) {
         return discountPolicies.stream()
                 .map(discountPolicy -> discountPolicy.applyDiscount(order))
-                .filter(discount -> discount.discountAmount() > NO_DISCOUNT)
+                .filter(discount -> discount.amount() > NO_DISCOUNT)
                 .toList();
     }
 }
