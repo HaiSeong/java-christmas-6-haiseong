@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Date;
 import christmas.domain.Order;
 import java.util.List;
 
@@ -8,8 +9,17 @@ public class DiscountApplier {
 
     private final List<DiscountPolicy> discountPolicies;
 
-    public DiscountApplier(List<DiscountPolicy> discountPolicies) {
+    private DiscountApplier(List<DiscountPolicy> discountPolicies) {
         this.discountPolicies = discountPolicies;
+    }
+
+    public static DiscountApplier createDiscountApplier(Date date) {
+        return new DiscountApplier(List.of(
+                new ChristmasDiscountPolicy(date),
+                new WeekdayDiscountPolicy(date),
+                new WeekendDiscountPolicy(date),
+                new SpecialDiscountPolicy(date)
+        ));
     }
 
     public List<Discount> applyDiscounts(Order order) {

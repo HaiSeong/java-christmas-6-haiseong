@@ -16,6 +16,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class DiscountApplierTest {
 
@@ -94,11 +95,6 @@ class DiscountApplierTest {
 
     void setDate(int day) {
         Date date = new Date(day);
-        discountApplier = new DiscountApplier(List.of(
-                new ChristmasDiscountPolicy(date),
-                new WeekendDiscountPolicy(date),
-                new WeekdayDiscountPolicy(date),
-                new SpecialDiscountPolicy(date)
-        ));
+        discountApplier = DiscountApplier.createDiscountApplier(date);
     }
 }
