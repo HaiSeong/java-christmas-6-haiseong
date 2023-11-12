@@ -3,13 +3,10 @@ package study.domain.benefit;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.Order;
-import christmas.domain.benefit.ChampagneGiftPolicy;
 import christmas.domain.benefit.Gift;
-import christmas.domain.benefit.GiftPolicy;
 import christmas.domain.benefit.GiftProvider;
 import christmas.enums.MenuItem;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +19,7 @@ class GiftProviderTest {
 
     @BeforeEach
     void setUp() {
-        giftProvider = new GiftProvider(List.of(new ChampagneGiftPolicy()));
+        giftProvider = GiftProvider.createGiftProvider();
     }
 
     @Test

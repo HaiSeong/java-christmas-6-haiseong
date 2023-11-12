@@ -8,8 +8,13 @@ public class GiftProvider {
 
     private final List<GiftPolicy> giftPolicies;
 
-    public GiftProvider(List<GiftPolicy> giftPolicies) {
+    private GiftProvider(List<GiftPolicy> giftPolicies) {
         this.giftPolicies = giftPolicies;
+    }
+
+    public static GiftProvider createGiftProvider() {
+        List<GiftPolicy> giftPolicies = List.of(new ChampagneGiftPolicy());
+        return new GiftProvider(giftPolicies);
     }
 
     public List<Gift> offerGifts(Order order) {
