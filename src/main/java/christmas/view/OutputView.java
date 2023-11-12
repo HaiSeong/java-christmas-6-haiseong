@@ -1,6 +1,5 @@
 package christmas.view;
 
-
 import java.util.Map;
 
 public class OutputView {
@@ -70,8 +69,8 @@ public class OutputView {
         System.out.printf(EXPECTED_PAYMENT_AFTER_DISCOUNT_MESSAGE_FORMAT, expectedPaymentAfterDiscount);
     }
 
-    public void printDecemberEventBadge(String decemberEventBadge) {
-        System.out.printf(DECEMBER_EVENT_BADGE_MESSAGE_FORMAT, decemberEventBadge);
+    public void printEventBadge(String EventBadge) {
+        System.out.printf(DECEMBER_EVENT_BADGE_MESSAGE_FORMAT, EventBadge);
     }
 }
 

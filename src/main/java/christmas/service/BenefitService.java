@@ -6,6 +6,7 @@ import christmas.domain.benefit.Discount;
 import christmas.domain.benefit.DiscountApplier;
 import christmas.domain.benefit.Gift;
 import christmas.domain.benefit.GiftProvider;
+import christmas.enums.EventBadge;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,5 +51,9 @@ public class BenefitService {
                 .stream()
                 .mapToInt(Integer::intValue)
                 .sum();
+    }
+
+    public EventBadge getEventBadge(Order order) {
+        return EventBadge.getBadgeForAmount(getTotalBenefitAmount(order));
     }
 }

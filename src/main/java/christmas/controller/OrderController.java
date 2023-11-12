@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.domain.Date;
 import christmas.domain.Order;
+import christmas.enums.EventBadge;
 import christmas.service.BenefitService;
 import christmas.service.ParserService;
 import christmas.view.InputView;
@@ -41,7 +42,8 @@ public class OrderController {
         outputView.println();
         outputView.printExpectedPaymentAfterDiscount(order.getTotalPrice() - orderService.getTotalBenefitAmount(order));
         outputView.println();
-        outputView.printDecemberEventBadge("준비중");
+        EventBadge eventBadge = orderService.getEventBadge(order);
+        outputView.printEventBadge(eventBadge.getBadgeName());
     }
 
     private Date getDate() {
