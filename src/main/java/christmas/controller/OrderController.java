@@ -21,28 +21,18 @@ public class OrderController {
     public void run() {
         Date date = getDate();
         Order order = getOrder();
-
         BenefitService benefitService = BenefitService.createBenefitService(date);
+        EventBadge eventBadge = benefitService.getEventBadge(order);
 
         outputView.printPreviewEventBenefitsMessage();
-        outputView.println();
         outputView.printOrderedMenuItems(order.toString());
-        outputView.println();
         outputView.printTotalAmountBeforeDiscount(order.getTotalPrice());
-        outputView.println();
 
-        Map<String, Integer> gifts = benefitService.getGifts(order);
-        outputView.printGiftedItems(gifts);
-        outputView.println();
-        Map<String, Integer> benefits = benefitService.getBenefits(order);
-        outputView.printBenefitDetails(benefits);
-        outputView.println();
+        outputView.printGiftedItems(benefitService.getGifts(order));
+        outputView.printBenefitDetails(benefitService.getBenefits(order));
 
         outputView.printTotalBenefitAmount(benefitService.getTotalBenefitAmount(order));
-        outputView.println();
-        outputView.printExpectedPaymentAfterDiscount(order.getTotalPrice() - benefitService.getTotalBenefitAmount(order));
-        outputView.println();
-        EventBadge eventBadge = benefitService.getEventBadge(order);
+        outputView.printExpectedPaymentAfterDiscount(benefitService.getExpectedPaymentAfterDiscount(order));
         outputView.printEventBadge(eventBadge.getBadgeName());
     }
 

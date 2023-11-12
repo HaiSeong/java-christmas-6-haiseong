@@ -17,7 +17,7 @@ public class OutputView {
     private static final String NO_BENEFIT = "없음";
     private static final int NEGATIVE_MULTIPLIER = -1;
 
-    public void println() {
+    public void printBlank() {
         System.out.println();
     }
 
@@ -27,14 +27,17 @@ public class OutputView {
 
     public void printPreviewEventBenefitsMessage() {
         System.out.println(PREVIEW_EVENT_BENEFITS_MESSAGE);
+        printBlank();
     }
 
     public void printOrderedMenuItems(String orderedMenuItems) {
         System.out.printf(ORDERED_MENU_ITEMS_MESSAGE_FORMAT, orderedMenuItems);
+        printBlank();
     }
 
     public void printTotalAmountBeforeDiscount(int totalAmountBeforeDiscount) {
         System.out.printf(TOTAL_AMOUNT_BEFORE_DISCOUNT_MESSAGE_FORMAT, totalAmountBeforeDiscount);
+        printBlank();
     }
 
     public void printGiftedItems(Map<String, Integer> gifts) {
@@ -47,6 +50,7 @@ public class OutputView {
         }
         String result = giftedItems.toString();
         System.out.printf(GIFTED_ITEMS_MESSAGE_FORMAT, result.trim());
+        printBlank();
     }
 
     public void printBenefitDetails(Map<String, Integer> benefits) {
@@ -59,14 +63,17 @@ public class OutputView {
         }
         String result = benefitDetails.toString();
         System.out.printf(BENEFIT_DETAILS_MESSAGE_FORMAT, result.trim());
+        printBlank();
     }
 
     public void printTotalBenefitAmount(int totalBenefitAmount) {
         System.out.printf(TOTAL_BENEFIT_AMOUNT_MESSAGE_FORMAT, totalBenefitAmount * NEGATIVE_MULTIPLIER);
+        printBlank();
     }
 
     public void printExpectedPaymentAfterDiscount(int expectedPaymentAfterDiscount) {
         System.out.printf(EXPECTED_PAYMENT_AFTER_DISCOUNT_MESSAGE_FORMAT, expectedPaymentAfterDiscount);
+        printBlank();
     }
 
     public void printEventBadge(String EventBadge) {
