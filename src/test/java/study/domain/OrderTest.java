@@ -103,4 +103,22 @@ public class OrderTest {
 
         assertThat(order.getTotalPrice()).isEqualTo(65_500);
     }
+
+    @Test
+    @DisplayName("주문 내역 문자열 확인")
+    void toString_주문_내역_확인() {
+        items.put(MenuItem.T_BONE_STEAK, 1);
+        items.put(MenuItem.SEAFOOD_PASTA, 1);
+        items.put(MenuItem.CHOCOLATE_CAKE, 1);
+        items.put(MenuItem.ZERO_COLA, 2);
+
+        Order order = new Order(items);
+
+        assertThat(order.toString()).contains(
+                "티본스테이크 1개",
+                "해산물파스타 1개",
+                "초코케이크 1개",
+                "제로콜라 2개"
+        );
+    }
 }

@@ -11,6 +11,7 @@ public class Order {
     private static final String MINIMUM_QUANTITY_ERROR_MESSAGE = "1 미만인 수량이 있습니다.";
     private static final String ONLY_DRINKS_ERROR_MESSAGE = "음료만 주문할 수 없습니다.";
     private static final String MAX_QUANTITY_ERROR_MESSAGE = "메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
+    private static final String ORDER_ITEM_FORMAT = "%s %d개\n";
 
     private final Map<MenuItem, Integer> orderItems;
 
@@ -80,5 +81,16 @@ public class Order {
 
     private int calculateTotalItemPrice(MenuItem item, int quantity) {
         return item.getPrice() * quantity;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        orderItems.forEach((menuItem, quantity) ->
+                stringBuilder.append(String.format(ORDER_ITEM_FORMAT, menuItem.getName(), quantity))
+        );
+        
+        return stringBuilder.toString()
+                .trim();
     }
 }
