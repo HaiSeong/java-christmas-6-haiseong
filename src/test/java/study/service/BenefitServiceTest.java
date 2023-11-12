@@ -2,10 +2,8 @@ package study.service;
 
 import christmas.domain.Date;
 import christmas.domain.Order;
-import christmas.domain.benefit.Gift;
 import christmas.enums.MenuItem;
 import christmas.service.BenefitService;
-import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,9 +33,9 @@ public class BenefitServiceTest {
     @Test
     @DisplayName("선물 리스트 정상 반환")
     void getGifts_선물_리스트_정상_반환() {
-        List<Gift> gifts = benefitService.getGifts(order);
+        Map<String, Integer> gifts = benefitService.getGifts(order);
 
-        assertThat(gifts).contains(new Gift("증정 이벤트", MenuItem.CHAMPAGNE, 1));
+        assertThat(gifts).containsExactlyInAnyOrderEntriesOf(Map.of("샴페인", 1));
     }
 
     @Test

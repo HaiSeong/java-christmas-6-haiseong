@@ -9,6 +9,7 @@ import christmas.domain.benefit.GiftProvider;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BenefitService {
     private final DiscountApplier discountApplier;
@@ -25,8 +26,11 @@ public class BenefitService {
         return new BenefitService(discountApplier, giftProvider);
     }
 
-    public List<Gift> getGifts(Order order) {
-        return giftProvider.offerGifts(order);
+    public Map<String, Integer> getGifts(Order order) {
+        List<Gift> gifts = giftProvider.offerGifts(order);
+
+        return gifts.stream()
+                .collect(Collectors.toMap(Gift::getGiftName, Gift::quantity));
     }
 
     public Map<String, Integer> getBenefits(Order order) {
@@ -35,7 +39,7 @@ public class BenefitService {
         List<Discount> discounts = discountApplier.applyDiscounts(order);
         discounts.forEach(discount -> benefits.put(discount.policyName(), discount.amount()));
 
-        List<Gift> gifts = getGifts(order);
+        List<Gift> gifts = giftProvider.offerGifts(order);
         gifts.forEach(gift -> benefits.put(gift.policyName(), gift.calculateTotalPrice()));
 
         return benefits;
