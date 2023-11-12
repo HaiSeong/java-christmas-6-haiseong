@@ -21,7 +21,7 @@ class DateTest {
     void invalidDayTest() {
         assertThatThrownBy(() -> new Date(32))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("날짜는 1일에서 31일 사이여야 합니다.");
+                .hasMessageContaining("유효하지 않은 날짜입니다. 다시 입력해 주세요.");
     }
 
     @Test
