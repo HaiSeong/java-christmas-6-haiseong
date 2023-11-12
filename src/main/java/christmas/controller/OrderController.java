@@ -9,8 +9,6 @@ import christmas.view.OutputView;
 import java.util.Map;
 
 public class OrderController {
-    private static final String DATE_INPUT_ERROR_MESSAGE = "유효하지 않은 날짜입니다. 다시 입력해 주세요.";
-
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -51,7 +49,7 @@ public class OrderController {
             try {
                 return new Date(inputView.readDate());
             } catch (IllegalArgumentException e) {
-                outputView.printError(DATE_INPUT_ERROR_MESSAGE);
+                outputView.printError(e.getMessage());
             }
         }
     }
