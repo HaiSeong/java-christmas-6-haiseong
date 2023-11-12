@@ -4,7 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import christmas.domain.Order;
 import christmas.domain.benefit.ChampagneGiftPolicy;
-import christmas.domain.benefit.GiftEntry;
+import christmas.domain.benefit.Gift;
 import christmas.domain.benefit.GiftPolicy;
 import christmas.enums.MenuItem;
 import java.util.HashMap;
@@ -30,10 +30,10 @@ class ChampagneGiftPolicyTest {
         Order order = new Order(items);
         GiftPolicy giftPolicy = new ChampagneGiftPolicy();
 
-        GiftEntry gift = giftPolicy.offerGift(order);
+        Gift gift = giftPolicy.offerGift(order);
 
-        assertThat(gift.getKey()).isEqualTo(MenuItem.CHAMPAGNE);
-        assertThat(gift.getValue()).isEqualTo(1);
+        assertThat(gift.menuItem()).isEqualTo(MenuItem.CHAMPAGNE);
+        assertThat(gift.quantity()).isEqualTo(1);
     }
 
     @Test
@@ -44,8 +44,8 @@ class ChampagneGiftPolicyTest {
         Order order = new Order(items);
         GiftPolicy giftPolicy = new ChampagneGiftPolicy();
 
-        GiftEntry gift = giftPolicy.offerGift(order);
+        Gift gift = giftPolicy.offerGift(order);
 
-        assertThat(gift.getValue()).isEqualTo(0);
+        assertThat(gift.quantity()).isEqualTo(0);
     }
 }
