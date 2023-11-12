@@ -53,6 +53,11 @@ public class BenefitService {
                 .sum();
     }
 
+    public int getExpectedPaymentAfterDiscount(Order order) {
+        int totalGiftPrice = giftProvider.offerGifts(order).stream().mapToInt(Gift::calculateTotalPrice).sum();
+        return order.getTotalPrice() - (getTotalBenefitAmount(order) - totalGiftPrice);
+    }
+
     public EventBadge getEventBadge(Order order) {
         return EventBadge.getBadgeForAmount(getTotalBenefitAmount(order));
     }
