@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class Order {
+    public static final int MINIMUM_ORDER_QUANTITY = 1;
     private static final int MAX_QUANTITY_PER_ORDER = 20;
     private static final String EMPTY_ORDER_ERROR_MESSAGE = "빈 주문입니다.";
+    private static final String MINIMUM_QUANTITY_ERROR_MESSAGE = "1 미만인 수량이 있습니다.";
     private static final String ONLY_DRINKS_ERROR_MESSAGE = "음료만 주문할 수 없습니다.";
     private static final String MAX_QUANTITY_ERROR_MESSAGE = "메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
 
@@ -20,6 +22,7 @@ public class Order {
 
     private void validate(Map<MenuItem, Integer> orderItems) {
         validateEmpty(orderItems);
+        validateMinimumOrderQuantity(orderItems);
         validateTotalQuantity(orderItems);
         validateNotOnlyDrinks(orderItems);
     }
@@ -27,6 +30,16 @@ public class Order {
     private void validateEmpty(Map<MenuItem, Integer> orderItems) {
         if (orderItems.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_ORDER_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateMinimumOrderQuantity(Map<MenuItem, Integer> orderItems) {
+        boolean hasInvalidQuantity = orderItems.values()
+                .stream()
+                .anyMatch(quantity -> quantity < MINIMUM_ORDER_QUANTITY);
+
+        if (hasInvalidQuantity) {
+            throw new IllegalArgumentException(MINIMUM_QUANTITY_ERROR_MESSAGE);
         }
     }
 

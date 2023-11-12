@@ -39,7 +39,16 @@ public class OrderTest {
     @Test
     @DisplayName("음료만 주문할 경우 예외 발생을 확인")
     void Order_빈_주문() {
-        assertThatThrownBy(() -> new Order(items)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Order(items)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("빈 주문입니다.");
+    }
+
+    @Test
+    @DisplayName("음료만 주문할 경우 예외 발생을 확인")
+    void Order_1개_미만_수_주문() {
+        assertThatThrownBy(() -> new Order(Map.of(MenuItem.MUSHROOM_SOUP, 0, MenuItem.SEAFOOD_PASTA, -1)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1 미만인 수량이 있습니다.");
     }
 
     @Test
@@ -92,6 +101,6 @@ public class OrderTest {
 
         Order order = new Order(items);
 
-        assertThat(order.getTotalPrice()).isEqualTo(65_500 );
+        assertThat(order.getTotalPrice()).isEqualTo(65_500);
     }
 }
