@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.Date;
 import christmas.domain.Order;
-import christmas.domain.benefit.DiscountEntry;
+import christmas.domain.benefit.Discount;
 import christmas.domain.benefit.DiscountPolicy;
 import christmas.domain.benefit.SpecialDiscountPolicy;
 import christmas.enums.MenuItem;
@@ -28,9 +28,9 @@ class SpecialDiscountPolicyTest {
         Date specialDay = new Date(25);
         DiscountPolicy policy = new SpecialDiscountPolicy(specialDay);
 
-        DiscountEntry discount = policy.applyDiscount(order);
+        Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(1000);
+        assertThat(discount.discountAmount()).isEqualTo(1000);
     }
 
     @Test
@@ -39,9 +39,9 @@ class SpecialDiscountPolicyTest {
         Date ordinalDay = new Date(26);
         DiscountPolicy policy = new SpecialDiscountPolicy(ordinalDay);
 
-        DiscountEntry discount = policy.applyDiscount(order);
+        Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(0);
+        assertThat(discount.discountAmount()).isEqualTo(0);
     }
 
     @Test
@@ -50,8 +50,8 @@ class SpecialDiscountPolicyTest {
         Date specialDay = new Date(25);
         DiscountPolicy policy = new SpecialDiscountPolicy(specialDay);
 
-        DiscountEntry discount = policy.applyDiscount(new Order(Map.of(MenuItem.MUSHROOM_SOUP, 1)));
+        Discount discount = policy.applyDiscount(new Order(Map.of(MenuItem.MUSHROOM_SOUP, 1)));
 
-        assertThat(discount.getValue()).isEqualTo(0);
+        assertThat(discount.discountAmount()).isEqualTo(0);
     }
 }

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.Date;
 import christmas.domain.Order;
-import christmas.domain.benefit.DiscountEntry;
+import christmas.domain.benefit.Discount;
 import christmas.domain.benefit.DiscountPolicy;
 import christmas.domain.benefit.WeekendDiscountPolicy;
 import christmas.enums.MenuItem;
@@ -28,9 +28,9 @@ class WeekendDiscountPolicyTest {
         Date weekend = new Date(2);
         DiscountPolicy policy = new WeekendDiscountPolicy(weekend);
 
-        DiscountEntry discount = policy.applyDiscount(order);
+        Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(2023);
+        assertThat(discount.discountAmount()).isEqualTo(2023);
     }
 
     @Test
@@ -39,8 +39,8 @@ class WeekendDiscountPolicyTest {
         Date weekday = new Date(3);
         DiscountPolicy policy = new WeekendDiscountPolicy(weekday);
 
-        DiscountEntry discount = policy.applyDiscount(order);
+        Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(0);
+        assertThat(discount.discountAmount()).isEqualTo(0);
     }
 }

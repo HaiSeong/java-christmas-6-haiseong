@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.Date;
 import christmas.domain.Order;
-import christmas.domain.benefit.DiscountEntry;
+import christmas.domain.benefit.Discount;
 import christmas.domain.benefit.DiscountPolicy;
 import christmas.domain.benefit.WeekdayDiscountPolicy;
 import christmas.enums.MenuItem;
@@ -28,9 +28,9 @@ class WeekdayDiscountPolicyTest {
         Date weekday = new Date(3);
         DiscountPolicy policy = new WeekdayDiscountPolicy(weekday);
 
-        DiscountEntry discount = policy.applyDiscount(order);
+        Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(2023 * 3);
+        assertThat(discount.discountAmount()).isEqualTo(2023 * 3);
     }
 
     @Test
@@ -39,9 +39,9 @@ class WeekdayDiscountPolicyTest {
         Date weekend = new Date(2);
         DiscountPolicy policy = new WeekdayDiscountPolicy(weekend);
 
-        DiscountEntry discount = policy.applyDiscount(order);
+        Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(0);
+        assertThat(discount.discountAmount()).isEqualTo(0);
     }
 
     @Test
@@ -50,8 +50,8 @@ class WeekdayDiscountPolicyTest {
         Date weekday = new Date(3);
         DiscountPolicy policy = new WeekdayDiscountPolicy(weekday);
 
-        DiscountEntry discount = policy.applyDiscount(new Order(Map.of(MenuItem.ICE_CREAM, 1)));
+        Discount discount = policy.applyDiscount(new Order(Map.of(MenuItem.ICE_CREAM, 1)));
 
-        assertThat(discount.getValue()).isEqualTo(0);
+        assertThat(discount.discountAmount()).isEqualTo(0);
     }
 }

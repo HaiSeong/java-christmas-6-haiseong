@@ -14,10 +14,10 @@ public class SpecialDiscountPolicy implements DiscountPolicy {
     }
 
     @Override
-    public DiscountEntry applyDiscount(Order order) {
+    public Discount applyDiscount(Order order) {
         if (date.isSpecialDay() && isAboveMinimumAmount(order)) {
-            return new DiscountEntry(POLICY_NAME, SPECIAL_DISCOUNT_AMOUNT);
+            return new Discount(POLICY_NAME, SPECIAL_DISCOUNT_AMOUNT);
         }
-        return new DiscountEntry(POLICY_NAME, 0);
+        return new Discount(POLICY_NAME, 0);
     }
 }

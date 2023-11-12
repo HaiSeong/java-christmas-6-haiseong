@@ -15,11 +15,11 @@ public class WeekendDiscountPolicy implements DiscountPolicy {
     }
 
     @Override
-    public DiscountEntry applyDiscount(Order order) {
+    public Discount applyDiscount(Order order) {
         if (date.isWeekend() && isAboveMinimumAmount(order)) {
             int discountAmount = order.countItemsByCategory(Category.MAIN) * MAIN_DISCOUNT_AMOUNT;
-            return new DiscountEntry(POLICY_NAME, discountAmount);
+            return new Discount(POLICY_NAME, discountAmount);
         }
-        return new DiscountEntry(POLICY_NAME, 0);
+        return new Discount(POLICY_NAME, 0);
     }
 }

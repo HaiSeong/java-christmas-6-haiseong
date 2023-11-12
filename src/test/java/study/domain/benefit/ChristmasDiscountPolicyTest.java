@@ -3,7 +3,7 @@ package study.domain.benefit;
 import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.domain.benefit.ChristmasDiscountPolicy;
-import christmas.domain.benefit.DiscountEntry;
+import christmas.domain.benefit.Discount;
 import christmas.domain.benefit.DiscountPolicy;
 import christmas.enums.MenuItem;
 import java.util.Map;
@@ -28,9 +28,9 @@ class ChristmasDiscountPolicyTest {
         Date dateBeforeChristmas = new Date(25);
         DiscountPolicy policy = new ChristmasDiscountPolicy(dateBeforeChristmas);
 
-        DiscountEntry discount = policy.applyDiscount(order);
+        Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(3400);
+        assertThat(discount.discountAmount()).isEqualTo(3400);
     }
 
     @Test
@@ -39,9 +39,9 @@ class ChristmasDiscountPolicyTest {
         Date dateAfterChristmas = new Date(26);
         DiscountPolicy policy = new ChristmasDiscountPolicy(dateAfterChristmas);
 
-        DiscountEntry discount = policy.applyDiscount(order);
+        Discount discount = policy.applyDiscount(order);
 
-        assertThat(discount.getValue()).isEqualTo(0);
+        assertThat(discount.discountAmount()).isEqualTo(0);
     }
 
     @Test
@@ -50,8 +50,8 @@ class ChristmasDiscountPolicyTest {
         Date dateBeforeChristmas = new Date(25);
         DiscountPolicy policy = new ChristmasDiscountPolicy(dateBeforeChristmas);
 
-        DiscountEntry discount = policy.applyDiscount(new Order(Map.of(MenuItem.MUSHROOM_SOUP, 1)));
+        Discount discount = policy.applyDiscount(new Order(Map.of(MenuItem.MUSHROOM_SOUP, 1)));
 
-        assertThat(discount.getValue()).isEqualTo(0);
+        assertThat(discount.discountAmount()).isEqualTo(0);
     }
 }
