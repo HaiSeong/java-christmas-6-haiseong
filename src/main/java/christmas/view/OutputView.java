@@ -41,29 +41,26 @@ public class OutputView {
     }
 
     public void printGiftedItems(Map<String, Integer> gifts) {
-        StringBuilder giftedItems = new StringBuilder();
-        gifts.forEach((giftName, quantity) ->
-                giftedItems.append(String.format(GIFTED_ITEM_FORMAT, giftName, quantity))
-        );
-        if (giftedItems.isEmpty()) {
-            giftedItems.append(NO_BENEFIT);
-        }
-        String result = giftedItems.toString();
-        System.out.printf(GIFTED_ITEMS_MESSAGE_FORMAT, result.trim());
+        String giftItems = getFormatted(gifts, GIFTED_ITEM_FORMAT);
+        System.out.printf(GIFTED_ITEMS_MESSAGE_FORMAT, giftItems.trim());
         printBlank();
     }
 
     public void printBenefitDetails(Map<String, Integer> benefits) {
-        StringBuilder benefitDetails = new StringBuilder();
-        benefits.forEach((name, amount) ->
-                benefitDetails.append(String.format(BENEFIT_DETAIL_FORMAT, name, amount))
-        );
-        if (benefitDetails.isEmpty()) {
-            benefitDetails.append(NO_BENEFIT);
-        }
-        String result = benefitDetails.toString();
-        System.out.printf(BENEFIT_DETAILS_MESSAGE_FORMAT, result.trim());
+        String benefitDetails = getFormatted(benefits, BENEFIT_DETAIL_FORMAT);
+        System.out.printf(BENEFIT_DETAILS_MESSAGE_FORMAT, benefitDetails.trim());
         printBlank();
+    }
+
+    private String getFormatted(Map<String, Integer> gifts, String format) {
+        StringBuilder builder = new StringBuilder();
+        gifts.forEach((key, value) ->
+                builder.append(String.format(format, key, value))
+        );
+        if (builder.isEmpty()) {
+            builder.append(NO_BENEFIT);
+        }
+        return builder.toString();
     }
 
     public void printTotalBenefitAmount(int totalBenefitAmount) {
