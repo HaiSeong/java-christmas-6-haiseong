@@ -25,7 +25,7 @@ class GiftProviderTest {
     @Test
     @DisplayName("주문이 선물 조건을 충족할 경우 적절한 선물을 제공")
     void offerGifts_10만원_이상_주문() {
-        order = new Order(Map.of(MenuItem.T_BONE_STEAK, 2));
+        order = new Order(Map.of(MenuItem.T_BONE_STEAK, 3));
 
         List<Gift> gifts = giftProvider.offerGifts(order);
 
